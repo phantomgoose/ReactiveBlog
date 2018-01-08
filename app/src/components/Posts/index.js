@@ -38,8 +38,6 @@ const mapStateToProps = state => {
 
   return {
     posts,
-    comments,
-    users,
     isFetching,
   };
 };
