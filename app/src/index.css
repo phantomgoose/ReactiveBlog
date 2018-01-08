@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.post {
+  border: thick solid black;
+  margin: 1em;
+  padding: .5em;
+}
+
+.post-title {
+  text-decoration: underline;
+}
+
+.post-body {
+
+}
+
+.comment {
+  margin-left: 2em;
+}
+
+.comment-name {
+  font-style: italic;
+}
+
+.comment-body {
+
+}
