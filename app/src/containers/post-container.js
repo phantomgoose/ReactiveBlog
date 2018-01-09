@@ -1,26 +1,10 @@
 import React, { Component } from "react";
-import Post from "../components/Post/Post";
+import Posts from "../components/Posts/Posts";
 import { connect } from "react-redux";
 
 class PostsContainer extends Component {
   render() {
-    const { posts, allFetched } = this.props;
-
-    return !allFetched ? (
-      <p>Fetching data...</p>
-    ) : (
-      posts.map((post, index) => {
-        return (
-          <Post
-            key={post.id}
-            title={post.title}
-            body={post.body}
-            comments={post.comments}
-            userName={post.userName}
-          />
-        );
-      })
-    );
+    return <Posts posts={this.props.posts} />;
   }
 }
 
@@ -28,20 +12,23 @@ const mapStateToProps = state => {
   const posts = state.posts;
   const comments = state.comments;
   const users = state.users;
-  const allFetched =
-    state.fetchStatus.postsFetched &&
-    state.fetchStatus.usersFetched &&
-    state.fetchStatus.commentsFetched;
 
-  posts.forEach(post => {
-    post.comments = comments.filter(comment => comment.postId === post.id);
-    let user = users.find(user => user.id === post.userId);
-    post.userName = user ? user.name : undefined;
-  });
+  if (posts) {
+    posts.forEach(post => {
+      if (comments) {
+        post.comments = comments.filter(comment => comment.postId === post.id);
+      }
+      if (users) {
+        let user = users.find(user => user.id === post.userId);
+        post.userName = user ? user.name : "Unknown";
+      }
+    });
+  }
 
   return {
     posts,
-    allFetched,
+    comments,
+    users,
   };
 };
 
