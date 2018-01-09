@@ -1,27 +1,27 @@
 import fetch from "cross-fetch";
 
-export const RECEIVE_POSTS = "RECEIVE_POSTS";
-export const RECEIVE_USERS = "RECEIVE_USERS";
-export const RECEIVE_COMMENTS = "RECEIVE_COMMENTS";
+export const GET_POSTS = "GET_POSTS";
+export const GET_USERS = "RECEIVE_USERS";
+export const GET_COMMENTS = "RECEIVE_COMMENTS";
 
-const receivePosts = jsonData => {
+const receivePosts = posts => {
   return {
-    type: RECEIVE_POSTS,
-    payload: jsonData,
+    type: GET_POSTS,
+    payload: posts,
   };
 };
 
-const receiveUsers = jsonData => {
+const receiveUsers = users => {
   return {
-    type: RECEIVE_USERS,
-    payload: jsonData,
+    type: GET_USERS,
+    payload: users,
   };
 };
 
-const receiveComments = jsonData => {
+const receiveComments = comments => {
   return {
-    type: RECEIVE_COMMENTS,
-    payload: jsonData,
+    type: GET_COMMENTS,
+    payload: comments,
   };
 };
 

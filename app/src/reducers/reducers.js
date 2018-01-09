@@ -1,35 +1,25 @@
 import { combineReducers } from "redux";
-import {
-  RECEIVE_POSTS,
-  RECEIVE_USERS,
-  RECEIVE_COMMENTS,
-} from "../actions/actions";
+import { GET_POSTS, GET_USERS, GET_COMMENTS } from "../actions/actions";
 
 const posts = (state = [], action) => {
-  switch (action.type) {
-    case RECEIVE_POSTS:
-      return action.payload;
-    default:
-      return state;
+  if (action.type !== GET_POSTS) {
+    return state;
   }
+  return action.payload;
 };
 
 const comments = (state = [], action) => {
-  switch (action.type) {
-    case RECEIVE_COMMENTS:
-      return action.payload;
-    default:
-      return state;
+  if (action.type !== GET_COMMENTS) {
+    return state;
   }
+  return action.payload;
 };
 
 const users = (state = [], action) => {
-  switch (action.type) {
-    case RECEIVE_USERS:
-      return action.payload;
-    default:
-      return state;
+  if (action.type !== GET_USERS) {
+    return state;
   }
+  return action.payload;
 };
 
 const fetchStatus = (
@@ -41,11 +31,11 @@ const fetchStatus = (
   action
 ) => {
   switch (action.type) {
-    case RECEIVE_POSTS:
+    case GET_POSTS:
       return Object.assign({}, state, { postsFetched: true });
-    case RECEIVE_USERS:
+    case GET_USERS:
       return Object.assign({}, state, { usersFetched: true });
-    case RECEIVE_COMMENTS:
+    case GET_COMMENTS:
       return Object.assign({}, state, { commentsFetched: true });
     default:
       return state;
