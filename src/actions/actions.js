@@ -1,62 +1,50 @@
-import fetch from "cross-fetch";
+import fetch from 'cross-fetch';
 
-export const GET_POSTS = "GET_POSTS";
-export const GET_USERS = "RECEIVE_USERS";
-export const GET_COMMENTS = "RECEIVE_COMMENTS";
+export const GET_POSTS = 'GET_POSTS';
+export const GET_USERS = 'RECEIVE_USERS';
+export const GET_COMMENTS = 'RECEIVE_COMMENTS';
 
-const receivePosts = posts => {
-  return {
-    type: GET_POSTS,
-    payload: posts,
-  };
+const receivePosts = posts => ({
+  type: GET_POSTS,
+  payload: posts,
+});
+
+const receiveUsers = users => ({
+  type: GET_USERS,
+  payload: users,
+});
+
+const receiveComments = comments => ({
+  type: GET_COMMENTS,
+  payload: comments,
+});
+
+export const fetchPosts = () => async (dispatch) => {
+  try {
+    const res = await fetch('https://jsonplaceholder.typicode.com/posts');
+    const jsonData = await res.json();
+    dispatch(receivePosts(jsonData));
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-const receiveUsers = users => {
-  return {
-    type: GET_USERS,
-    payload: users,
-  };
+export const fetchComments = () => async (dispatch) => {
+  try {
+    const res = await fetch('https://jsonplaceholder.typicode.com/comments');
+    const jsonData = await res.json();
+    dispatch(receiveComments(jsonData));
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-const receiveComments = comments => {
-  return {
-    type: GET_COMMENTS,
-    payload: comments,
-  };
-};
-
-export const fetchPosts = () => {
-  return async dispatch => {
-    try {
-      const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-      const jsonData = await res.json();
-      dispatch(receivePosts(jsonData));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
-
-export const fetchComments = () => {
-  return async dispatch => {
-    try {
-      const res = await fetch("https://jsonplaceholder.typicode.com/comments");
-      const jsonData = await res.json();
-      dispatch(receiveComments(jsonData));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
-
-export const fetchUsers = () => {
-  return async dispatch => {
-    try {
-      const res = await fetch("https://jsonplaceholder.typicode.com/users");
-      const jsonData = await res.json();
-      dispatch(receiveUsers(jsonData));
-    } catch (error) {
-      console.log(error);
-    }
-  };
+export const fetchUsers = () => async (dispatch) => {
+  try {
+    const res = await fetch('https://jsonplaceholder.typicode.com/users');
+    const jsonData = await res.json();
+    dispatch(receiveUsers(jsonData));
+  } catch (error) {
+    console.log(error);
+  }
 };

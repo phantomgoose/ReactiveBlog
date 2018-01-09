@@ -1,5 +1,5 @@
-import { combineReducers } from "redux";
-import { GET_POSTS, GET_USERS, GET_COMMENTS } from "../actions/actions";
+import { combineReducers } from 'redux';
+import { GET_POSTS, GET_USERS, GET_COMMENTS } from '../actions/actions';
 
 const posts = (state = null, action) => {
   if (action.type !== GET_POSTS) {
