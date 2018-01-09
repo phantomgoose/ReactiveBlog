@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CommentContainer from "../../containers/comment-container";
+import CommentContainer from "../../containers/CommentsContainer";
 
 class Post extends Component {
   render() {

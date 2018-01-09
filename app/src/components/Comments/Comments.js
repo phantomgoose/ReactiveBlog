@@ -3,11 +3,11 @@ import Comment from "../Comment/Comment";
 
 class Comments extends Component {
   render() {
-    const comments = this.props.comments;
-    if (!comments) {
+    const filteredComments = this.props.filteredComments;
+    if (!filteredComments) {
       return <p>Loading comments...</p>;
     }
-    return comments.map(comment => {
+    return filteredComments.map(comment => {
       return <Comment key={comment.id} name={comment.name} body={comment.body} />;
     });
   }
