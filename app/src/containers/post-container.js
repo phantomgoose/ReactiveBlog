@@ -1,12 +1,5 @@
-import React, { Component } from "react";
 import Posts from "../components/Posts/Posts";
 import { connect } from "react-redux";
-
-class PostsContainer extends Component {
-  render() {
-    return <Posts posts={this.props.posts} />;
-  }
-}
 
 const mapStateToProps = state => {
   const posts = state.posts;
@@ -32,4 +25,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(PostsContainer);
+export default connect(mapStateToProps)(Posts);
