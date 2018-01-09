@@ -1,8 +1,8 @@
-import React from "react";
-import Post from "./Post";
+import React, { Component } from "react";
+import Post from "../components/Post/Post";
 import { connect } from "react-redux";
 
-class Posts extends React.Component {
+class PostsContainer extends Component {
   render() {
     const { posts, isFetching } = this.props;
 
@@ -42,4 +42,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Posts);
+export default connect(mapStateToProps)(PostsContainer);
