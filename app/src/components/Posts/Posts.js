@@ -12,10 +12,10 @@ class Posts extends Component {
       return (
         <Post
           key={post.id}
-          comments={post.comments}
           title={post.title}
           body={post.body}
           userName={post.userName}
+          id={post.id}
         />
       );
     });

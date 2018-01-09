@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Comments from "../Comments/Comments";
+import CommentContainer from "../../containers/comment-container";
 
 class Post extends Component {
   render() {
@@ -9,7 +9,7 @@ class Post extends Component {
           Posted by {this.props.userName} - {this.props.title}
         </p>
         <p className="post-body">{this.props.body}</p>
-        <Comments comments={this.props.comments} />
+        <CommentContainer postId={this.props.id} />
       </div>
     );
   }

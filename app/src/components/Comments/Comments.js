@@ -8,7 +8,7 @@ class Comments extends Component {
       return <p>Loading comments...</p>;
     }
     return comments.map(comment => {
-      return <Comment name={comment.name} body={comment.body} />;
+      return <Comment key={comment.id} name={comment.name} body={comment.body} />;
     });
   }
 }
