@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CommentContainer from "../../containers/CommentsContainer";
+import CommentsContainer from "../../containers/CommentsContainer";
 
 class Post extends Component {
   render() {
@@ -9,7 +9,7 @@ class Post extends Component {
           Posted by {this.props.userName} - {this.props.title}
         </p>
         <p className="post-body">{this.props.body}</p>
-        <CommentContainer postId={this.props.id} />
+        <CommentsContainer postId={this.props.id} />
       </div>
     );
   }

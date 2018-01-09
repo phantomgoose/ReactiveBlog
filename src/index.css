@@ -14,18 +14,10 @@ body {
   text-decoration: underline;
 }
 
-.post-body {
-
-}
-
 .comment {
   margin-left: 2em;
 }
 
 .comment-name {
   font-style: italic;
-}
-
-.comment-body {
-
 }
