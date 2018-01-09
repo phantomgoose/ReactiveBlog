@@ -4,24 +4,24 @@ export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const RECEIVE_USERS = "RECEIVE_USERS";
 export const RECEIVE_COMMENTS = "RECEIVE_COMMENTS";
 
-const receivePosts = json => {
+const receivePosts = jsonData => {
   return {
     type: RECEIVE_POSTS,
-    items: json,
+    payload: jsonData,
   };
 };
 
-const receiveUsers = json => {
+const receiveUsers = jsonData => {
   return {
     type: RECEIVE_USERS,
-    items: json,
+    payload: jsonData,
   };
 };
 
-const receiveComments = json => {
+const receiveComments = jsonData => {
   return {
     type: RECEIVE_COMMENTS,
-    items: json,
+    payload: jsonData,
   };
 };
 
@@ -31,8 +31,8 @@ export const fetchPosts = () => {
       const res = await fetch("https://jsonplaceholder.typicode.com/posts");
       const jsonData = await res.json();
       dispatch(receivePosts(jsonData));
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error);
     }
   };
 };
@@ -43,8 +43,8 @@ export const fetchComments = () => {
       const res = await fetch("https://jsonplaceholder.typicode.com/comments");
       const jsonData = await res.json();
       dispatch(receiveComments(jsonData));
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error);
     }
   };
 };
@@ -55,8 +55,8 @@ export const fetchUsers = () => {
       const res = await fetch("https://jsonplaceholder.typicode.com/users");
       const jsonData = await res.json();
       dispatch(receiveUsers(jsonData));
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error);
     }
   };
 };

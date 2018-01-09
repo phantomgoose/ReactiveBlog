@@ -29,7 +29,9 @@ const mapStateToProps = state => {
   const comments = state.comments;
   const users = state.users;
   const allFetched =
-    posts.length > 0 && comments.length > 0 && users.length > 0;
+    state.fetchStatus.postsFetched &&
+    state.fetchStatus.usersFetched &&
+    state.fetchStatus.commentsFetched;
 
   posts.forEach(post => {
     post.comments = comments.filter(comment => comment.postId === post.id);
