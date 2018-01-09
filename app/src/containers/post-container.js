@@ -4,9 +4,9 @@ import { connect } from "react-redux";
 
 class PostsContainer extends Component {
   render() {
-    const { posts, isFetching } = this.props;
+    const { posts, allFetched } = this.props;
 
-    return isFetching ? (
+    return !allFetched ? (
       <p>Fetching data...</p>
     ) : (
       posts.map((post, index) => {
@@ -25,10 +25,11 @@ class PostsContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  const isFetching = !state.blog.allFetched;
-  const posts = state.blog.posts.items;
-  const comments = state.blog.comments.items;
-  const users = state.blog.users.items;
+  const posts = state.posts;
+  const comments = state.comments;
+  const users = state.users;
+  const allFetched =
+    posts.length > 0 && comments.length > 0 && users.length > 0;
 
   posts.forEach(post => {
     post.comments = comments.filter(comment => comment.postId === post.id);
@@ -38,7 +39,7 @@ const mapStateToProps = state => {
 
   return {
     posts,
-    isFetching,
+    allFetched,
   };
 };
 

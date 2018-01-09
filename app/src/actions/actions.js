@@ -1,6 +1,9 @@
 import fetch from "cross-fetch";
 
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
+export const RECEIVE_USERS = "RECEIVE_USERS";
+export const RECEIVE_COMMENTS = "RECEIVE_COMMENTS";
+
 const receivePosts = json => {
   return {
     type: RECEIVE_POSTS,
@@ -8,7 +11,6 @@ const receivePosts = json => {
   };
 };
 
-export const RECEIVE_USERS = "RECEIVE_USERS";
 const receiveUsers = json => {
   return {
     type: RECEIVE_USERS,
@@ -16,7 +18,6 @@ const receiveUsers = json => {
   };
 };
 
-export const RECEIVE_COMMENTS = "RECEIVE_COMMENTS";
 const receiveComments = json => {
   return {
     type: RECEIVE_COMMENTS,
@@ -25,40 +26,37 @@ const receiveComments = json => {
 };
 
 export const fetchPosts = () => {
-  return function(dispatch) {
-    return fetch("https://jsonplaceholder.typicode.com/posts")
-      .then(
-        res => res.json(),
-        error => console.log("Error during api call.", error)
-      )
-      .then(json => {
-        dispatch(receivePosts(json));
-      });
+  return async dispatch => {
+    try {
+      const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+      const jsonData = await res.json();
+      dispatch(receivePosts(jsonData));
+    } catch (e) {
+      console.log(e);
+    }
   };
 };
 
 export const fetchComments = () => {
-  return function(dispatch) {
-    return fetch("https://jsonplaceholder.typicode.com/comments")
-      .then(
-        res => res.json(),
-        error => console.log("Error during api call.", error)
-      )
-      .then(json => {
-        dispatch(receiveComments(json));
-      });
+  return async dispatch => {
+    try {
+      const res = await fetch("https://jsonplaceholder.typicode.com/comments");
+      const jsonData = await res.json();
+      dispatch(receiveComments(jsonData));
+    } catch (e) {
+      console.log(e);
+    }
   };
 };
 
 export const fetchUsers = () => {
-  return function(dispatch) {
-    return fetch("https://jsonplaceholder.typicode.com/users")
-      .then(
-        res => res.json(),
-        error => console.log("Error during api call.", error)
-      )
-      .then(json => {
-        dispatch(receiveUsers(json));
-      });
+  return async dispatch => {
+    try {
+      const res = await fetch("https://jsonplaceholder.typicode.com/users");
+      const jsonData = await res.json();
+      dispatch(receiveUsers(jsonData));
+    } catch (e) {
+      console.log(e);
+    }
   };
 };
