@@ -19,6 +19,7 @@ class Posts extends Component {
 
 const mapStateToProps = (state) => {
   const { posts, users, errorMessages } = state;
+  // iterate through errorMessages to see if there are any non-null values. If there are, set errorsExist to true
   const errorsExist = Object.keys(errorMessages).find(key => errorMessages[key] !== null) !== undefined;
 
   if (posts && users) {

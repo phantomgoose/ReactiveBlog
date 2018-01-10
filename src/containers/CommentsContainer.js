@@ -7,7 +7,7 @@ class Comments extends Component {
   render() {
     const { filteredComments } = this.props;
     if (!filteredComments) {
-      return <p>Loading comments...</p>;
+      return <p>No comments to show yet...</p>;
     }
     return filteredComments.map(comment => <Comment key={comment.id} name={comment.name} body={comment.body} />);
   }
