@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Comment from '../components/Comment/Comment';
 
 class Comments extends Component {
@@ -19,6 +20,20 @@ const mapStateToProps = (state, ownProps) => {
     filteredComments = allComments.filter(comment => comment.postId === ownProps.postId);
   }
   return { filteredComments };
+};
+
+Comments.propTypes = {
+  filteredComments: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      body: PropTypes.string,
+    }),
+  ),
+};
+
+Comments.defaultProps = {
+  filteredComments: null,
 };
 
 export default connect(mapStateToProps)(Comments);

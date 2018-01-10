@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import './index.css';
-import registerServiceWorker from './registerServiceWorker';
 import PostsContainer from './containers/PostsContainer';
 import rootReducer from './reducers/reducers';
 import { fetchPosts, fetchComments, fetchUsers } from './actions/actions';
@@ -21,4 +20,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root'),
 );
-registerServiceWorker();

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Post from '../components/Post/Post';
 
 class Posts extends Component {
@@ -16,12 +17,10 @@ class Posts extends Component {
 const mapStateToProps = (state) => {
   const { posts, users } = state;
 
-  if (posts) {
+  if (posts && users) {
     posts.forEach((post) => {
-      if (users) {
-        const user = users.find(user => user.id === post.userId);
-        post.userName = user ? user.name : 'Unknown';
-      }
+      const postOwner = users.find(user => user.id === post.userId);
+      post.userName = postOwner ? postOwner.name : 'Unknown';
     });
   }
 
@@ -29,6 +28,22 @@ const mapStateToProps = (state) => {
     posts,
     users,
   };
+};
+
+Posts.propTypes = {
+  posts: PropTypes.arrayOf(
+    PropTypes.shape({
+      userName: PropTypes.string,
+      userId: PropTypes.number,
+      title: PropTypes.string,
+      body: PropTypes.string,
+      id: PropTypes.number,
+    }),
+  ),
+};
+
+Posts.defaultProps = {
+  posts: null,
 };
 
 export default connect(mapStateToProps)(Posts);
