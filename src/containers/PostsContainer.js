@@ -5,8 +5,11 @@ import Post from '../components/Post/Post';
 
 class Posts extends Component {
   render() {
-    const { posts } = this.props;
+    const { posts, errorMessages, errorsExist } = this.props;
 
+    if (errorsExist) {
+      return Object.keys(errorMessages).map(key => <p>{errorMessages[key]}</p>);
+    }
     if (!posts) {
       return <p>Loading posts...</p>;
     }
@@ -15,7 +18,8 @@ class Posts extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { posts, users } = state;
+  const { posts, users, errorMessages } = state;
+  const errorsExist = Object.keys(errorMessages).find(key => errorMessages[key] !== null) !== undefined;
 
   if (posts && users) {
     posts.forEach((post) => {
@@ -27,6 +31,8 @@ const mapStateToProps = (state) => {
   return {
     posts,
     users,
+    errorMessages,
+    errorsExist,
   };
 };
 
@@ -40,10 +46,17 @@ Posts.propTypes = {
       id: PropTypes.number,
     }),
   ),
+  errorMessages: PropTypes.shape({
+    posts: PropTypes.string,
+    users: PropTypes.string,
+    comments: PropTypes.string,
+  }),
+  errorsExist: PropTypes.bool.isRequired,
 };
 
 Posts.defaultProps = {
   posts: null,
+  errorMessages: null,
 };
 
 export default connect(mapStateToProps)(Posts);
