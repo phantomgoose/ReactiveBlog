@@ -1,8 +1,8 @@
 import fetch from 'cross-fetch';
 
 export const GET_POSTS = 'GET_POSTS';
-export const GET_USERS = 'RECEIVE_USERS';
-export const GET_COMMENTS = 'RECEIVE_COMMENTS';
+export const GET_USERS = 'GET_USERS';
+export const GET_COMMENTS = 'GET_COMMENTS';
 
 const receivePosts = posts => ({
   type: GET_POSTS,
