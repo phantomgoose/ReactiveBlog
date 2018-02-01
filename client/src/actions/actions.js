@@ -75,3 +75,15 @@ export const fetchUsers = () => async (dispatch) => {
     dispatch(getUsersFailure('Unable to fetch users via API.'));
   }
 };
+
+export const fetchTest = () => async (dispatch) => {
+  try {
+    const res = await fetch('/api/test');
+    if (!res.ok) {
+      throw new Error(res.status);
+    }
+    console.log(await res.json());
+  } catch (error) {
+    console.log(error);
+  }
+};
